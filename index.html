@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>untuk wanita ku {made by : ramon}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            background-image: url('background2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lyrics span {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 25px 0;
+        }
+
+        .lyrics span.active {
+            display: block;
+        }
+
+        audio {
+            display: none; /* Audio disembunyikan */
+        }
+
+        #startButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #startButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+   <img src="backgroun10.jpg" alt="Contoh GIF" width="210">
+    <h1>MABUK CINTA</h1>
+    <small>Lagu:armada</small>
+    
+    <!-- Tombol untuk memulai lagu -->
+    <button id="startButton">Mulai</button>
+    
+    <!-- Lagu yang akan diputar -->
+    <audio id="song">
+        <source src="penuhwarna.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <div class="lyrics">
+        <span data-time="3">Bayangkan bila harimu penuh warna🌈</span>
+        <span data-time="10">Itulah yang saat ini kurasakan😝</span>
+        <span data-time="18">Dia membuat tidurku tak nyenyak😴💤</span>
+        <span data-time="21">Dia membuat makan pun tak enak😖</span>
+        <span data-time="26">Kuterpikat pada kehangatan️</span>
+        <span data-time="28">Yang selalu dia berikan</span>
+        <span data-time="35">Kurasa 'ku sedang dimabuk cinta🩷🥴</span>
+        <span data-time="40">aku sayangggg kamuuu kamuu jangan ovt terus yaa 
+gaa ada yang aku sembunyiin dari kamuuu
+harus saling percaya okeiii</span>
+        <span data-time=40-50>I love you moreee💐💐</span>
+        <!-- Tambahkan lirik lainnya sesuai dengan lagu -->
+    </div>
+
+    <script>
+        const song = document.getElementById('song');
+        const lyrics = document.querySelectorAll('.lyrics span');
+        const startButton = document.getElementById('startButton');
+
+        // Fungsi untuk memulai lagu dan sinkronisasi lirik
+        startButton.addEventListener('click', () => {
+            song.play(); // Memulai pemutaran lagu
+            startButton.style.display = 'none'; // Menyembunyikan tombol mulai
+
+            song.addEventListener('timeupdate', () => {
+                let currentTime = song.currentTime;
+
+                lyrics.forEach((line) => {
+                    let lineTime = parseFloat(line.getAttribute('data-time'));
+                    if (currentTime >= lineTime && currentTime < lineTime + 5) {
+                        line.classList.add('active');
+                    } else {
+                        line.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
